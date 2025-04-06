@@ -19,7 +19,7 @@ const typeDefs = `#graphql
     email: String!
     mobile: String!
     postcode: String!
-    services: [String!]!
+    services: String!
   }
 
   # The "Query" type is special: it lists all of the available queries that
@@ -30,6 +30,16 @@ const typeDefs = `#graphql
     book(id: ID!): Lead
     emptybooks: [Lead]
   }
+  type Mutation {
+    addLead(
+      name: String!
+      email: String!
+      mobile: String!
+      postcode: String!
+      services: String!
+    ): Lead
+  }
+
 `;
 
 const pool = mysql.createPool({
@@ -79,14 +89,7 @@ const resolvers = {
         const [rows] = await db.execute("SELECT * FROM leads");
         console.log(rows); // Log the rows to see the data
 
-        const leads = (rows as LeadRow[]).map((lead: any) => ({
-          ...lead,
-          services: lead.services
-          ? lead.services.split(',').map(s => s.trim()) // split and clean
-          : [] // empty array if services is null or empty
-        }));
-
-        return leads;
+        return rows;
       } finally {
         db.release(); // Release connection back to pool
       }
@@ -103,19 +106,11 @@ const resolvers = {
 
         if((rows as LeadRow[]).length === 0) {
           return null;
+        }else{
+          return rows[0];
         }
 
-        const leads = (rows as LeadRow[]).map((lead: any) => ({
-          ...lead,
-          services: lead.services
-          ? lead.services.split(',').map(s => s.trim()) // split and clean
-          : [] // empty array if services is null or empty
-        }));
-
-        console.log("leads:" + leads); // Log the rows to see the data
         
-        const lead = leads[0]; // Get the first lead from the array
-        return lead;
 
       } finally {
         db.release(); // Release connection back to pool
@@ -141,6 +136,30 @@ const resolvers = {
         db.release(); // Release connection back to pool
       }
     },
+  },
+  Mutation: {
+    addLead: async (_, { name, email, mobile, postcode, services }) => {
+      const db = await getDB();
+      try {
+        const [result] = await db.execute(
+          'INSERT INTO leads (name, email, mobile, postcode, services) VALUES (?, ?, ?, ?, ?)',
+          [name, email, mobile, postcode, services]
+        );
+        
+        const insertId = (result as mysql.OkPacket).insertId;
+        
+        return {
+          id: insertId,
+          name,
+          email,
+          mobile,
+          postcode,
+          services
+        };
+      } finally {
+        db.release();
+      }
+    }
   },
 };
 

@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
 import SurveyPieChart from './SurveyPieChart';
 
-const GET_POSTS = gql`
-  query GetBooks {
-	books {
+const GET_LEADS = gql`
+  query GetLeads {
+	leads {
 	  id,
 	  name,
 	  services
@@ -17,9 +17,9 @@ const GET_POSTS = gql`
 
 const ReviewItemList = () => {
 
-	const { loading2, error2, data } = useQuery(GET_POSTS);
-	const [bookCount, setBookCount] = useState(0); // State to hold book count
-	const [talliedBooks, setTalliedBooks] = useState([]);  // State to hold processed data
+	const { loading2, error2, data } = useQuery(GET_LEADS);
+	const [leadCount, setLeadCount] = useState(0); // State to hold leads count
+	const [talliedLeads, setTalliedLeads] = useState([]);  // State to hold processed data
 	const [delivery, setDelivery] = useState(0);  // State to hold processed data
 	const [pickup, setPickup] = useState(0);  // State to hold processed data
 	const [payment, setPayment] = useState(0);  // State to hold processed data
@@ -35,30 +35,30 @@ const ReviewItemList = () => {
   
   // Tally or process data before rendering
   useEffect(() => {
-    if (data && data.books) {
-      // Count books
-      setBookCount(data.books.length);
+    if (data && data.leads) {
+      // Count leads
+      setLeadCount(data.leads.length);
       
-      // You can modify the books data if needed, here I'm just setting it as is
-      setTalliedBooks(data.books);
+      // You can modify the leads data if needed, here I'm just setting it as is
+      setTalliedLeads(data.leads);
 		
 		let deliverycount =0;
 		let pickupcount = 0;
 		let paymentcount = 0;
 		
-		console.log(data.books)
-		// Example: Loop over books and add a new field (e.g., name length)
-		for (const book of data.books) {
-			console.log(book.services + 'book')
-		  if (book.services === 'DELIVERY'){
+		console.log(data.leads)
+		// Example: Loop over leads and add a new field (e.g., name length)
+		for (const lead of data.leads) {
+			console.log(lead.services + 'lead')
+		  if (lead.services === 'DELIVERY'){
 			  deliverycount += 1;
 		  }
 		  
-			if (book.services === 'PICKUP'){
+			if (lead.services === 'PICKUP'){
 				pickupcount += 1;
 			}
 
-			if (book.services === 'PAYMENT'){
+			if (lead.services === 'PAYMENT'){
 			  paymentcount += 1;
 			  }
 		}
@@ -80,7 +80,7 @@ const ReviewItemList = () => {
 	
   if (loading2) return <p>Loading2...</p>;
   if (error2) return <p>Error2: {error2.message}</p>;
-  if (!data || !data.books) return <div>No data available</div>;
+  if (!data || !data.leads) return <div>No data available</div>;
 	
   return (
     <div className="container mx-auto p-4">
@@ -90,7 +90,7 @@ const ReviewItemList = () => {
         
 		 <div className="bg-white p-6 rounded-lg shadow-lg">
             <h3 className="text-lg font-semibold">Expressions</h3>
-            <p className="text-2xl">{bookCount}</p>
+            <p className="text-2xl">{leadCount}</p>
           </div>
 		  <div className="bg-white p-6 rounded-lg shadow-lg">
             <h3 className="text-lg font-semibold">Delivery</h3>

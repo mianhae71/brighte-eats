@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation, gql } from '@apollo/client';
 import { Banknote, ShoppingCart, PackageOpen } from 'lucide-react';
 
-const ADD_POST = gql`
+const ADD_LEAD = gql`
   mutation AddLead(
     $name: String!, 
     $email: String!, 
@@ -11,7 +11,7 @@ const ADD_POST = gql`
     $postcode: String!, 
     $services: String!
   ) {
-    addLead(
+    register(
       name: $name, 
       email: $email,
       mobile: $mobile,
@@ -36,7 +36,7 @@ const ReviewItemForm = () => {
   const [mobile, setMobile] = useState('');
   const [postcode, setPostcode] = useState('');
   const [services, setServices] = useState('');
-  const [addPost, { data, loading, error }] = useMutation(ADD_POST);
+  const [addLead, { data, loading, error }] = useMutation(ADD_LEAD);
 	const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = (e) => {
@@ -51,7 +51,7 @@ const ReviewItemForm = () => {
 		return;
 	}
 	  
-    addPost({ variables: { name, email, mobile, postcode, services } });
+    addLead({ variables: { name, email, mobile, postcode, services } });
   };
 
   return (

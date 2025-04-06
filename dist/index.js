@@ -24,12 +24,11 @@ export const typeDefs = `#graphql
   # clients can execute, along with the return type for each. In this
   # case, the "books" query returns an array of zero or more Books (defined above).
   type Query {
-    books: [Lead]
-    book(id: ID!): Lead
-    emptybooks: [Lead]
+    leads: [Lead]
+    lead(id: ID!): Lead
   }
   type Mutation {
-    addLead(
+    register(
       name: String!
       email: String!
       mobile: String!
@@ -48,25 +47,9 @@ const pool = mysql.createPool({
     connectionLimit: 10,
     multipleStatements: true,
 });
-// const db = mysql.createConnection({
-//   host: process.env.HOST,
-//   user: process.env.USER,
-//   password: process.env.PW,
-//   database: process.env.DB,
-// });
-const books = [
-    {
-        title: 'The Awakening',
-        author: 'Kate Chopin',
-    },
-    {
-        title: 'City of Glass',
-        author: 'Paul Auster',
-    },
-];
 export const resolvers = {
     Query: {
-        books: async () => {
+        leads: async () => {
             const db = await getDB();
             try {
                 const [rows] = await db.execute("SELECT * FROM leads");
@@ -77,7 +60,7 @@ export const resolvers = {
                 db.release(); // Release connection back to pool
             }
         },
-        book: async (_, { id }) => {
+        lead: async (_, { id }) => {
             const db = await getDB();
             try {
                 console.log("passing id", id);
@@ -94,25 +77,9 @@ export const resolvers = {
                 db.release(); // Release connection back to pool
             }
         },
-        emptybooks: async () => {
-            const db = await getDB();
-            try {
-                const [rows] = await db.execute("SELECT * FROM leads WHERE id = 0");
-                const leads = rows.map((lead) => ({
-                    ...lead,
-                    services: lead.services
-                        ? lead.services.split(',').map(s => s.trim()) // split and clean
-                        : [] // empty array if services is null or empty
-                }));
-                return leads;
-            }
-            finally {
-                db.release(); // Release connection back to pool
-            }
-        },
     },
     Mutation: {
-        addLead: async (_, { name, email, mobile, postcode, services }) => {
+        register: async (_, { name, email, mobile, postcode, services }) => {
             const db = await getDB();
             try {
                 const [result] = await db.execute('INSERT INTO leads (name, email, mobile, postcode, services) VALUES (?, ?, ?, ?, ?)', [name, email, mobile, postcode, services]);

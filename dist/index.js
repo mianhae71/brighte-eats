@@ -101,12 +101,12 @@ export const resolvers = {
             const db = await getDB(); // Assuming getDB() gives you the database connection pool
             try {
                 // Drop the database if it exists and create a new one
-                await db.execute(`DROP DATABASE IF EXISTS db_brighteeats`);
-                await db.execute(`CREATE DATABASE db_brighteeats`);
-                await db.execute(`DROP TABLE IF EXISTS db_brighteeats.leads`);
+                //await db.execute(`DROP DATABASE IF EXISTS db_brighteeats`);
+                //await db.execute(`CREATE DATABASE db_brighteeats`);
+                await db.execute(`DROP TABLE IF EXISTS ${process.env.DB}.leads`);
                 // Drop the table if it exists and create a new one
                 await db.execute(`
-          CREATE TABLE db_brighteeats.leads (
+          CREATE TABLE ${process.env.DB}.leads (
             id INT AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
             email VARCHAR(255) NOT NULL,
@@ -117,7 +117,7 @@ export const resolvers = {
         `);
                 // Insert data into the tasks table
                 await db.execute(`
-          INSERT INTO db_brighteeats.leads (name, email, mobile, postcode, services)
+          INSERT INTO ${process.env.DB}.leads (name, email, mobile, postcode, services)
           VALUES
             ('Arjay Leonardo', 'jaywiz71@gmail.com', '09500626430', 4103, 'DELIVERY'),
             ('Lester Trinidad', 'jaywiz712@gmail.com', '09500626431', 4103, 'PICKUP'),

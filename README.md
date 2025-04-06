@@ -65,7 +65,7 @@ Brighte-Eats is a full-stack web application built using Node.js, Apollo Server,
    
    After completing the installation, you can run the unit tests for the project by executing the following command in your terminal:
    
-   -npm test
+   - npm test
 
    This will run all the test cases defined in the project and output the results in the terminal.
 

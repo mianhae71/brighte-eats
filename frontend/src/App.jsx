@@ -6,6 +6,8 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 // Lazy-loaded components
 const ReviewItemList = lazy(() => import('./components/ReviewItemList'));
 const ReviewItemForm = lazy(() => import('./components/ReviewItemForm'));
+const Thankyou = lazy(() => import('./components/Thankyou'));
+
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/graphql',
@@ -26,6 +28,7 @@ function App() {
 				  <Routes>
 					<Route path="/" element={<ReviewItemList />} />
 					<Route path="/add" element={<ReviewItemForm />} />
+					<Route path="/thanks/:name" element={<Thankyou />}/>
 					<Route path="*" element={<div className="text-center p-8">Page not found</div>} />
 				  </Routes>
 				</Suspense>

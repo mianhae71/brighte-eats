@@ -12,7 +12,7 @@ const ADD_LEAD = gql`
     $services: String!
   ) {
     register(
-      name: $name, 
+      name: $name,
       email: $email,
       mobile: $mobile,
       postcode: $postcode,
@@ -36,7 +36,9 @@ const ReviewItemForm = () => {
   const [mobile, setMobile] = useState('');
   const [postcode, setPostcode] = useState('');
   const [services, setServices] = useState('');
-  const [addLead, { data, loading, error }] = useMutation(ADD_LEAD);
+  const [addLead, { data, loading, error }] = useMutation(ADD_LEAD,{onCompleted: (data) => {
+    navigate(`/thanks/${name}`);
+  },});
 	const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = (e) => {
@@ -157,7 +159,6 @@ const ReviewItemForm = () => {
           </button>
         </div>
 
-        {data && <p className="text-green-500 mt-4">Post created: {data.addLead.name}</p>}
       </form>
     </div>
   );

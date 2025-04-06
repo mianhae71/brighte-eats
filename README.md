@@ -40,12 +40,27 @@ Brighte-Eats is a full-stack web application built using Node.js, Apollo Server,
 
     Make sure to configure your database connection by modifying the _.env_ file in the root project folder. 
     Ensure the credentials and settings align with your local or cloud database.
+    Database must exist or you can create one
+
+    Test the connection at http://localhost:4000/graphql 
+    - In the GraphQL operation terminal, run the following mutation:
+
+        query GetLeads {
+            leads{
+                id,name
+            }
+        }
+    
+    If you are encountering 'Access Denied' error, you should make sure that SQL credentials are correct and that you have access to the MySQL
+    Check this out : https://stackoverflow.com/questions/17975120/access-denied-for-user-rootlocalhost-using-password-yes-no-privileges
+
+    if you are encountering 'Database not found' or 'Table not found' proceed to Step 6.
 
 6. Initialise the Database:
 
    To set up the database, follow these steps:
 
-   1. Go to http://localhost:4001/graphql 
+   1. Go to http://localhost:4000/graphql 
    2. In the GraphQL operation terminal, run the following mutation:
 
         mutation {
@@ -66,6 +81,7 @@ Brighte-Eats is a full-stack web application built using Node.js, Apollo Server,
 ## Unit Testing
    
    After completing the installation, you can run the unit tests for the project by executing the following command in your terminal:
+   Make sure you shut down the server previously since this will also use localhost:4000
    
    - Go to brighte-eats-main and open terminal
    - npm test

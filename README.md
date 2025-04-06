@@ -18,14 +18,16 @@ Brighte-Eats is a full-stack web application built using Node.js, Apollo Server,
 2. Install dependencies for NodeJS
     
     Navigate to the project directory and install the necessary backend dependencies:
-    -cd brighte-eats
-    -npm install
+
+    - Go to brighte-eats-main and open terminal
+    - npm install
 
 3. Install dependencies for frontend(React):
 
     Navigate to the project directory and install the necessary frontend dependencies:
-    -cd brighte-eats/frontend
-    -npm install
+
+    - Go to brighte-eats-main/frontend and open terminal
+    - npm install
 
 4. Start the NodeJS application:
 
@@ -36,7 +38,7 @@ Brighte-Eats is a full-stack web application built using Node.js, Apollo Server,
 
 5. Configure database connection
 
-    Make sure to configure your database connection by modifying the .env file in the root project folder. 
+    Make sure to configure your database connection by modifying the _.env_ file in the root project folder. 
     Ensure the credentials and settings align with your local or cloud database.
 
 6. Initialise the Database:
@@ -55,7 +57,7 @@ Brighte-Eats is a full-stack web application built using Node.js, Apollo Server,
 7. Start the React Application:
 
     Now, navigate back to the frontend folder and run the React application:
-    - cd brighte-eats/frontend
+    - Go to brighte-eats-main/frontend and open terminal
     - npm run dev
 
     Once the React app starts, open your browser and go to:
@@ -65,6 +67,7 @@ Brighte-Eats is a full-stack web application built using Node.js, Apollo Server,
    
    After completing the installation, you can run the unit tests for the project by executing the following command in your terminal:
    
+   - Go to brighte-eats-main and open terminal
    - npm test
 
    This will run all the test cases defined in the project and output the results in the terminal.

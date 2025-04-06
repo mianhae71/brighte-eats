@@ -61,6 +61,14 @@ Brighte-Eats is a full-stack web application built using Node.js, Apollo Server,
     Once the React app starts, open your browser and go to:
     http://localhost:3000 to access the frontend.
 
+## Unit Testing
+   
+   After completing the installation, you can run the unit tests for the project by executing the following command in your terminal:
+   
+   -npm test
+
+   This will run all the test cases defined in the project and output the results in the terminal.
+
 ## License
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).

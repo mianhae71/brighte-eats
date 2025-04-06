@@ -25,7 +25,7 @@ describe('GraphQL API', () => {
     app = url;
   });
 
-  it('should return all books in the books query', async () => {
+  it('should return all leads in the leads query', async () => {
     const query = `
       query {
         leads {
@@ -45,10 +45,10 @@ describe('GraphQL API', () => {
       .expect('Content-Type', /json/);
 
     expect(response.status).to.equal(200);
-    expect(response.body.data.books).to.be.an('array');
+    expect(response.body.data.leads).to.be.an('array');
   });
   
-  it('should return one in the books query', async () => {
+  it('should return one in the leads query', async () => {
     const query = `
       query {
         lead(id:1) {
@@ -69,16 +69,16 @@ describe('GraphQL API', () => {
 
     expect(response.status).to.equal(200);
     // Check that the 'book' query returned data
-    expect(response.body.data.book).to.be.an('object');
-    expect(response.body.data.book).to.have.property('id');
-    expect(response.body.data.book).to.have.property('name');
-    expect(response.body.data.book).to.have.property('email');
-    expect(response.body.data.book).to.have.property('mobile');
-    expect(response.body.data.book).to.have.property('postcode');
-    expect(response.body.data.book).to.have.property('services');
+    expect(response.body.data.lead).to.be.an('object');
+    expect(response.body.data.lead).to.have.property('id');
+    expect(response.body.data.lead).to.have.property('name');
+    expect(response.body.data.lead).to.have.property('email');
+    expect(response.body.data.lead).to.have.property('mobile');
+    expect(response.body.data.lead).to.have.property('postcode');
+    expect(response.body.data.lead).to.have.property('services');
 
     // Display the returned book object in the console
-    console.log('Returned Book:', response.body.data.book);
+    console.log('Returned Book:', response.body.data.lead);
   });
 
   it('should add a new lead through addLead mutation', async () => {
@@ -107,6 +107,6 @@ describe('GraphQL API', () => {
       .expect('Content-Type', /json/);
 
     expect(response.status).to.equal(200);
-    expect(response.body.data.addLead.name).to.equal('Test User');
+    expect(response.body.data.register.name).to.equal('Test User');
   });
 });

@@ -3,10 +3,13 @@
     "rootDirs": ["src"],
     "outDir": "dist",
     "lib": ["es2020"],
-    "target": "es2020",
-    "module": "esnext",
+    "target": "ESNext",
+    "module": "ESNext",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "types": ["node"]
-  }
+    "types": ["node"],
+    "allowJs": true,            // Allows mixing JS/TS
+  },
+  "include": ["src/**/*"], // Include your source and test files
+  "exclude": ["node_modules"]
 }

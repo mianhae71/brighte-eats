@@ -1,0 +1,29 @@
+[33mcommit 432bda457d7d9aa2e5754ae0c6a3ca6a4538264d[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: arjay <jaywiz71@gmail.com>
+Date:   Sun Apr 6 17:23:05 2025 +0800
+
+    Added frontend files, contains dashboard and submitting expressions
+
+[33mcommit 7ce254df9bcc59d9e8ed3d5b1713315a3e204f04[m
+Author: arjay <jaywiz71@gmail.com>
+Date:   Sun Apr 6 17:12:29 2025 +0800
+
+    Modified services
+
+[33mcommit b09125591d94cf14b73e8c1829f1a8e6ca07b72d[m
+Author: arjay <jaywiz71@gmail.com>
+Date:   Sat Apr 5 19:41:25 2025 +0800
+
+    Added TS files with working database connection and graphQL
+
+[33mcommit e87f625879fd5b3d17786e132ae8677f9d170fee[m
+Author: arjay <jaywiz71@gmail.com>
+Date:   Sat Apr 5 19:13:32 2025 +0800
+
+    Initialise node js files
+
+[33mcommit b7b2659fc52cd0ac2155377dde4676fa460d1b01[m
+Author: mianhae71 <kenji_arjay711@yahoo.com>
+Date:   Sat Apr 5 18:59:50 2025 +0800
+
+    first commit

@@ -4,7 +4,7 @@ const pool = mysql.createPool({
     host: "localhost",
     user: "root",
     password: "password",
-    database: "graphql_db",
+    database: "db_brighteeats",
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,

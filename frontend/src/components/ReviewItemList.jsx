@@ -2,7 +2,7 @@
 import { useEffect,useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useQuery, gql } from '@apollo/client';
+import {useQuery, gql } from '@apollo/client';
 import SurveyPieChart from './SurveyPieChart';
 
 const GET_LEADS = gql`

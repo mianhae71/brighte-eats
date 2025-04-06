@@ -17,7 +17,7 @@ const GET_LEADS = gql`
 
 const ReviewItemList = () => {
 
-	const { loading2, error2, data } = useQuery(GET_LEADS);
+	const {loading2, error2, data } = useQuery(GET_LEADS);
 	const [leadCount, setLeadCount] = useState(0); // State to hold leads count
 	const [talliedLeads, setTalliedLeads] = useState([]);  // State to hold processed data
 	const [delivery, setDelivery] = useState(0);  // State to hold processed data

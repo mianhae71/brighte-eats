@@ -51,10 +51,13 @@ Brighte-Eats is a full-stack web application built using Node.js, Apollo Server,
             }
         }
     
-    If you are encountering 'Access Denied' error, you should make sure that SQL credentials are correct and that you have access to the MySQL
-    Check this out : https://stackoverflow.com/questions/17975120/access-denied-for-user-rootlocalhost-using-password-yes-no-privileges
+    - If you are encountering 'Access Denied' error, you should make sure that SQL credentials are correct and that you have access to the MySQL
+    Check this out: 
+    https://stackoverflow.com/questions/17975120/access-denied-for-user-rootlocalhost-using-password-yes-no-privileges
 
-    if you are encountering 'Database not found' or 'Table not found' proceed to Step 6.
+    if you are encountering 'Unknown database' or 'Table doesn't exist' this means you are able to connect
+    
+    proceed to Step 6.
 
 6. Initialise the Database:
 
